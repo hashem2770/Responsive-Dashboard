@@ -27,76 +27,27 @@ class MyHomePage extends StatelessWidget {
     double height = MediaQuery.sizeOf(context).height;
     double width = MediaQuery.sizeOf(context).width;
 
-    return Scaffold(
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          log(constraints.maxWidth.toString()); //minWidth:450
-          return constraints.maxWidth < 800
-              ? const MobileLayout()
-              : const DesktopLayout();
-        },
-      ),
+    return  Scaffold(
+      // appbar take 56 pixels of height by default
+      appBar: AppBar(),
+      body: ExampleExample(),
     );
   }
 }
 
-class MobileLayout extends StatelessWidget {
-  const MobileLayout({
+class ExampleExample extends StatelessWidget {
+  const ExampleExample({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return Container(
-              margin: const EdgeInsets.all(8),
-              color: Colors.cyan,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  index.toString(),
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 30),
-                ),
-              ));
-        });
-  }
-}
-
-class DesktopLayout extends StatelessWidget {
-  const DesktopLayout({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return Container(
-                    margin: const EdgeInsets.all(8),
-                    color: Colors.cyan,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        index.toString(),
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(fontSize: 30),
-                      ),
-                    ));
-              }),
-        ),
-        Expanded(
-          child: Container(
-            color: Colors.amber,
-            child: const Text('Desktop Layout'),
-          )
-        )
+    double height = MediaQuery.sizeOf(context).height;
+    return Column(
+      children:  [
+        Expanded(child: Container(height: height/3,color: Colors.red,)),
+        Container(height: height/3,color: Colors.blue,),
+        Container(height: height/3,color: Colors.amberAccent,),
       ],
     );
   }
